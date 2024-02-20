@@ -2,8 +2,8 @@ import { React, useEffect } from 'react'
 
 export default function Timer({ dispatch, timeRemaining }) {
 
-    const min = Math.floor(timeRemaining / 60)
-    const sec = timeRemaining % 60
+    const min = Math.floor(+timeRemaining / 60)
+    const sec = +timeRemaining % 60
 
     // const min = Math.floor(timeRemaining / 60): This line calculates the remaining minutes
     // by dividing timeRemaining (which is in seconds) by 60(the number of seconds in a minute).

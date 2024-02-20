@@ -171,7 +171,7 @@ function reducer(state, action) {
   switch (action.type) {
     case 'dataRecieved': return { ...state, status: 'ready' }
     case 'dataFailed': return { ...state, status: 'error' }
-    case 'start': return { ...state, status: 'active', timeRemaining: state.questions.length * SEC_PER_QUESTION }
+    case 'start': return { ...state, status: 'active', timeRemaining: +state.questions.length * SEC_PER_QUESTION }
     case 'newAnswer':
       const question = state.questions.at(state.index)
       return {
@@ -180,7 +180,7 @@ function reducer(state, action) {
       }
     case 'nextQuestion': return { ...state, index: state.index + 1, answer: null }
     case 'finish': return { ...state, status: 'finished', highScore: state.points > state.highScore ? state.points : state.highScore }
-    case 'retake': return { ...initialState, status: 'active', questions: state.questions } // index: 0, points: 0, answer: null 
+    case 'retake': return { ...state, status: 'active', questions: state.questions } // index: 0, points: 0, answer: null 
     case 'forTimer': return { ...state, timeRemaining: state.timeRemaining - 1, status: state.timeRemaining === 0 ? 'finished' : state.status }
     default: throw new Error('Invalid action')
   }
